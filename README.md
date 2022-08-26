@@ -22,7 +22,7 @@ Please refer to [FAQ](dock/en/faq.md) for frequently asked questions.
 ## Citation
 If you use this toolbox or benchmark in your research, please cite this project.
 ```bibtex
-@misc{xrmocap,
+@misc{xrlocalization,
     title={OpenXRLab Visual Localization Toolbox and Server},
     author={XRLocalization Contributors},
     howpublished = {\url{https://github.com/openxrlab/xrlocalization}},
