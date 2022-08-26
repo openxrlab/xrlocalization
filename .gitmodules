@@ -1,0 +1,3 @@
+[submodule "3rdparty/d2net"]
+	path = 3rdparty/d2net
+	url = https://github.com/mihaidusmanu/d2-net.git
