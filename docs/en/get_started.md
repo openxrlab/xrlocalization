@@ -2,7 +2,7 @@
 XRLocalization provides a flexible tool that can easily perform visual localization offline and online.
 Given a query image, XRLocalization estimates a 6DoF pose from a pre-reconstructed map. A tiny dataset
 is provided for convenience. Donwload the dataset from 
-[here](https://sensear-map.oss-cn-hangzhou.aliyuncs.com/stloc_sdk/xrloc-test-data.tar.gz). The 
+[here](https://openxrlab-share.oss-cn-hongkong.aliyuncs.com/xrlocalization/meta/xrloc-test-meta.tar.gz). The 
 folder extracted from the dataset is shown below.
 ```commandline
 ├── map
@@ -36,5 +36,5 @@ python3 run_web_server.py --map_path /path/to/map --port 12345
 ```
 This command would start a localization server, which listen to 
 the client's localization request and return the corresponding 
-localization result. Please refer to [here]() for details on how to 
+localization result. Please refer to [here](https://github.com/openxrlab/xrdocument) for details on how to 
 use this server at the client.
