@@ -1,4 +1,4 @@
-##Installation
+## Installation
 XRLocalization is mainly based on Python >= 3.7, XRPrimer >= 0.5.2 and PyTorch >= 1.1.
 As long as the environment is ready, the installation is very simple. In this section, 
 we show how to prepare an environment and install XRLocalization.
