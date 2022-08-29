@@ -33,7 +33,7 @@ If you use this toolbox or benchmark in your research, please cite this project.
 
 ## Contributing
 We appreciate all contributions to improve XRLocalization. 
-Please refer to [CONTRIBUTING.md]() for the contributing guideline.
+Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the contributing guideline.
 
 ## Acknowledgement
 XRLocalization is an open source project that is contributed by researchers and 
