@@ -34,7 +34,5 @@ python3 tools/recon_feature_extract.py \
 This would produce a file `matches.bin` that records the matching info about all image pairs.
 
 **2.** Perform triangulation
-```commandline
-
-```
+Please refer to [XRSfM](https://github.com/openxrlab/xrsfm) for how to do triangulation.
 This would produce the new sparse model stored at `/path/to/new_model`
