@@ -9,9 +9,11 @@ python3 run_benchmark.py \
     --query_path /path/to/query_file \
     --json /path/to/json_file
 ```
+
+## Preparation
+
 Before running `run_benchmark.py`, we need to provide `localization map`, `query file` 
 and a `json file`.
-
 
 **0.** Generate `localization map`
 
@@ -54,3 +56,18 @@ We can specify configuration through a `json_file`. We provide a template json a
 ```
 Note that both `local_feature` and `global_feature` must be the same as when constructing
 localization map.
+
+## Extracting results
+The tool does not store any results. If you intend to use the estimated camera poses, 
+the log produced by the tool should be stored in a log file. For example, 
+```commandline
+python3 run_benchmark.py \
+    --map_path /path/to/map \ 
+    --query_path /path/to/query.txt \
+    --json /path/to/json_file > result.log &
+```
+Then, you can use the provided log parsing script to extract camera pose from the log file 
+and do you want to do.
+```commandline
+python3 tools/loc_log_parser.py --logs /path/to/result.log
+```

@@ -12,7 +12,7 @@ class Extractor:
     """
     support_extractors = {
         'd2net': {
-            'image_size': 1600,
+            'image_size': 640,
             'gray_image': False,
             'model': {
                 'model_name': 'd2_tf.pth',
@@ -20,7 +20,7 @@ class Extractor:
             },
         },
         'netvlad': {
-            'image_size': 1024,
+            'image_size': 640,
             'gray_image': False,
             'model': {
                 'model_name': 'VGG16-NetVLAD-Pitts30K',
