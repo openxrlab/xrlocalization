@@ -35,7 +35,7 @@ python3 tools/loc_convert_reconstruction.py \
 The only difference is at `--feature_path /path/to/feats-xxxx.h5`.  The output is the same as xrloc.
 
 
-***Step 1* Generate `database.bin`
+**Step 1** Generate `database.bin`
 ```commandline
 python3 tools/ir_create_database.py \
    --image_dir /path/to/image_dir \
