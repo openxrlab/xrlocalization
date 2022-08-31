@@ -1,7 +1,7 @@
-import logging
-import time
 import argparse
 import json
+import logging
+import time
 
 from xrloc.localizer import Localizer
 from xrloc.utils.dataset import read_ios_logger_query_dataset
