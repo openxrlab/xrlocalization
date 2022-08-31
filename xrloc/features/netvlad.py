@@ -1,7 +1,4 @@
 # Code from https://github.com/cvg/Hierarchical-Localization/blob/master/hloc/extractors/netvlad.py
-from pathlib import Path
-import subprocess
-import logging
 import numpy as np
 import torch
 import torch.nn as nn
