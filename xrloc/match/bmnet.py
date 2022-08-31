@@ -8,7 +8,6 @@ from scipy.optimize import linear_sum_assignment
 
 
 class PointCN(torch.nn.Module):
-
     def __init__(self, in_channels, out_channels, attention=False):
         super(PointCN, self).__init__()
         self.shot_cut = None
@@ -43,7 +42,6 @@ class PointCN(torch.nn.Module):
 
 
 class EncodingBlock(nn.Module):
-
     def __init__(self, channels: list, attention=False):
         super(EncodingBlock, self).__init__()
         self.num_layers = len(channels)
@@ -59,7 +57,6 @@ class EncodingBlock(nn.Module):
 
 
 class ConcatenationLayer(torch.nn.Module):
-
     def __init__(self):
         super(ConcatenationLayer, self).__init__()
 
@@ -79,7 +76,6 @@ class ConcatenationLayer(torch.nn.Module):
 
 
 class HungarianPooling(torch.autograd.Function):
-
     @staticmethod
     def forward(ctx, weights, matches, rows, cols):
         probs = torch.sigmoid(weights)
@@ -97,9 +93,9 @@ class HungarianPooling(torch.autograd.Function):
 
 def hungarian_pooling(weights, edges, rows, cols):
     if len(weights.shape) != 1:
-        raise ValueError("Input weights must be 1 dims!")
+        raise ValueError('Input weights must be 1 dims!')
     if rows <= 0 or cols <= 0:
-        raise ValueError("Rows and cols must be larger than 0!")
+        raise ValueError('Rows and cols must be larger than 0!')
     return HungarianPooling.apply(weights, edges, rows, cols)
 
 
@@ -135,7 +131,8 @@ class BipartiteMatchingNet(nn.Module):
         self.cat = ConcatenationLayer()
         self.hungarian_pooling = hungarian_pooling\
             # if self.config[
-            # 'hpooling'] else None
+
+        # 'hpooling'] else None
         self.conv = nn.Conv1d(self.config['channels2'][-1], 1, kernel_size=1)
 
         url = 'https://openxrlab-share.oss-cn-hongkong.aliyuncs.com/xrlocalization/weights/bmnet.pth'

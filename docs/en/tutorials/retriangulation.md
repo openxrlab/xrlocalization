@@ -1,7 +1,7 @@
 # Retriangulate a spare model with a new feature
 In this part, we introduce how to re-triangulate a sparse SfM model with a new feature. For example,
-assume there is a sparse SfM model reconstructed with SIFT feature, we intend to use a deep feature, 
-such as D2Net or SuperPoint, to do visual localization. 
+assume there is a sparse SfM model reconstructed with SIFT feature, we intend to use a deep feature,
+such as D2Net or SuperPoint, to do visual localization.
 
 Assume we have reference images and the sparse model that is COLMAP format:
 ```commandline
@@ -29,7 +29,7 @@ This would extract d2net feature for every image in `/path/to/images` and save a
 python3 tools/recon_feature_extract.py \
        --recon_path /path/to/model \
        --feature_bin_path /path/to/features.bin \
-       --match_bin_path /path/to/matches.bin 
+       --match_bin_path /path/to/matches.bin
 ```
 This would produce a file `matches.bin` that records the matching info about all image pairs.
 

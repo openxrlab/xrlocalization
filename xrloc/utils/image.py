@@ -77,14 +77,14 @@ def write_image(path, image):
         image = image[:, :, ::-1]  # RGB to BGR
     cv.imwrite(path, image)
 
+
 class ImageDataSet:
-    """Image dataset
+    """Image dataset.
 
     Args:
         image_dir (str): Path to directory including images
         do_read (str): Read image or not
     """
-
     def __init__(self, image_dir, do_read=True):
         self.paths = glob_images(image_dir)
         self.do_read = do_read

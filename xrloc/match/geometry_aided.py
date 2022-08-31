@@ -23,7 +23,7 @@ class GeometryAidedMatcher(object):
 
         for key in required_keys:
             if key not in data:
-                raise ValueError(key + " not exist in input")
+                raise ValueError(key + ' not exist in input')
 
         if data['3d_descriptors'].shape[1] < self.config['k']:
             return np.zeros((2, 0), dtype=int), np.zeros(0, dtype=np.float32)
@@ -92,8 +92,9 @@ class GeometryAidedMatcher(object):
         mask = torch.ones((dists.shape[0], k), dtype=torch.bool).cuda()
         mask[:, 0] = (dists[:, 0] < 1)
         for i in range(1, k):
-            mask[:, i] = (
-                (dists[:, 0] / (dists[:, i]+1e-6)) > ratio) & (dists[:, i] < thres)
+            mask[:,
+                 i] = ((dists[:, 0] /
+                        (dists[:, i] + 1e-6)) > ratio) & (dists[:, i] < thres)
         mask = mask.reshape(-1)
 
         # Compose match

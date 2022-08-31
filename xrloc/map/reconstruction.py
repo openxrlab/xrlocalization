@@ -9,32 +9,31 @@ from xrloc.map.read_write_model import read_point3d_feature_binary
 
 
 class Reconstruction(object):
-    """Reconstruction used as map for xrloc
+    """Reconstruction used as map for xrloc.
 
     Args:
           map_path  (str) : Directory including images.bin, points3D.bin,
                 features.bin
     """
-
     def __init__(self, map_path):
         images_bin_path = os.path.join(map_path, 'images.bin')
         if not os.path.exists(images_bin_path):
-            raise ValueError("Invalid path: {}".format(images_bin_path))
+            raise ValueError('Invalid path: {}'.format(images_bin_path))
 
         points3d_bin_path = os.path.join(map_path, 'points3D.bin')
         if not os.path.exists(points3d_bin_path):
-            raise ValueError("Invalid path: {}".format(points3d_bin_path))
+            raise ValueError('Invalid path: {}'.format(points3d_bin_path))
 
         features_bin_path = os.path.join(map_path, 'features.bin')
         if not os.path.exists(features_bin_path):
-            raise ValueError("Invalid path: {}".format(features_bin_path))
+            raise ValueError('Invalid path: {}'.format(features_bin_path))
 
         self.images = read_images_binary(images_bin_path)
         self.point3ds = read_points3d_binary(points3d_bin_path)
         self.features = read_point3d_feature_binary(features_bin_path)
 
     def covisible_images(self, image_id, num_covisble_point=1):
-        """Get co-visible images
+        """Get co-visible images.
 
         Args:
             image_id (int): Image id
@@ -70,7 +69,7 @@ class Reconstruction(object):
         return [image_id] + image_ids
 
     def visible_points(self, image_ids):
-        """Get visible 3D point ids for given image id list
+        """Get visible 3D point ids for given image id list.
 
         Args:
             image_ids (list[int]): The image id list
@@ -88,7 +87,7 @@ class Reconstruction(object):
         return mp_point3d_ids
 
     def point3d_at(self, point3d_id):
-        """Get 3D point coordinate
+        """Get 3D point coordinate.
 
         Args:
             point3d_id (int): The 3D point id
@@ -99,7 +98,7 @@ class Reconstruction(object):
         return self.point3ds[point3d_id]
 
     def image_at(self, image_id):
-        """Get image
+        """Get image.
 
         Args:
             image_id (int): The image id
@@ -110,7 +109,7 @@ class Reconstruction(object):
         return self.images[image_id]
 
     def point3d_coordinates(self, point3d_ids):
-        """Get the coordinates of multi 3D points
+        """Get the coordinates of multi 3D points.
 
         Args:
             point3d_ids (array[int]): The point 3D ids
@@ -124,7 +123,7 @@ class Reconstruction(object):
         return coordinates
 
     def point3d_features(self, point3d_ids):
-        """Get the descriptors of multi 3D points
+        """Get the descriptors of multi 3D points.
 
         Args:
             point3d_ids (array[int]): The point 3D ids

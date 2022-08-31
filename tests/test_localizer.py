@@ -13,7 +13,9 @@ image_dir = 'tests/data/query'
 def test_init_localizer():
     loc = Localizer(map_path=map_path)
     assert loc.database is not None
-    with pytest.raises(ValueError, match='Not found database under map: {}'.format(image_dir)):
+    with pytest.raises(
+            ValueError,
+            match='Not found database under map: {}'.format(image_dir)):
         Localizer(map_path=image_dir)
 
 
@@ -23,7 +25,3 @@ def test_extract_features():
     keypoints, descriptors = loc.extract_features(image)
     assert keypoints.shape[0] == 2
     assert descriptors.shape[0] == 512
-
-
-
-

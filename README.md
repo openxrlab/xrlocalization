@@ -15,7 +15,7 @@ Please refer to [Installation](docs/en/installation.md) for installation instruc
 Please refer to [quick start](docs/en/get_started.md) for the basic usage of XRLocalization.
 
 ## License
-This project is released under the [Apache 2.0 license](LICENSE). 
+This project is released under the [Apache 2.0 license](LICENSE).
 
 ## FAQ
 Please refer to [FAQ](dock/en/faq.md) for frequently asked questions.
@@ -32,15 +32,15 @@ If you use this toolbox or benchmark in your research, please cite this project.
 ```
 
 ## Contributing
-We appreciate all contributions to improve XRLocalization. 
+We appreciate all contributions to improve XRLocalization.
 Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the contributing guideline.
 
 ## Acknowledgement
-XRLocalization is an open source project that is contributed by researchers and 
+XRLocalization is an open source project that is contributed by researchers and
 engineers from both the academia and the industry.
-We appreciate all the contributors who implement their methods or add new features, 
+We appreciate all the contributors who implement their methods or add new features,
 as well as users who give valuable feedbacks.
-We wish that the toolbox and benchmark could serve the growing research community 
+We wish that the toolbox and benchmark could serve the growing research community
 by providing a flexible toolkit to reimplement existing methods and develop their
 own new models.
 
@@ -53,4 +53,3 @@ own new models.
 - [XRMoCap](https://github.com/openxrlab/xrmocap): OpenXRLab Multi-view Motion Capture Toolbox and Benchmark.
 - [XRMoGen](https://github.com/openxrlab/xrmogen): OpenXRLab Human Motion Generation Toolbox and Benchmark.
 - [XRNeRF](https://github.com/openxrlab/xrnerf): OpenXRLab Neural Radiance Field (NeRF) Toolbox and Benchmark.
-

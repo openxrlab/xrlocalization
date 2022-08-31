@@ -41,4 +41,3 @@ def test_forward():
     # assert 'keypoints' in data
     # assert 'scores' in data
     # assert 'descriptors' in data
-

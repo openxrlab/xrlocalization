@@ -15,7 +15,6 @@ EPS = 1e-6
 
 
 class NetVLADLayer(nn.Module):
-
     def __init__(self, input_dim=512, K=64, score_bias=False, intranorm=True):
         super().__init__()
         self.score_proj = nn.Conv1d(input_dim,

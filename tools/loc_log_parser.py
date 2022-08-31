@@ -2,7 +2,8 @@ import argparse
 import collections
 import numpy as np
 
-QImage = collections.namedtuple("QImage", ["name", "qvec", "tvec", "num_inlier"])
+QImage = collections.namedtuple('QImage',
+                                ['name', 'qvec', 'tvec', 'num_inlier'])
 
 
 def extract_value(line):

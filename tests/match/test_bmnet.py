@@ -33,13 +33,12 @@ def test_pointcn_forward():
 def test_hungarian_pooling():
     N, cols, rows = 100, 100, 100
     weights = torch.ones([1, N])
-    edges = torch.from_numpy(np.array(
-        [np.arange(N), np.arange(N)]
-    ))
+    edges = torch.from_numpy(np.array([np.arange(N), np.arange(N)]))
     with pytest.raises(ValueError, match='Input weights must be 1 dims!'):
         hungarian_pooling(weights, edges, cols, rows)
     weights = torch.ones([N])
-    with pytest.raises(ValueError, match='Rows and cols must be larger than 0!'):
+    with pytest.raises(ValueError,
+                       match='Rows and cols must be larger than 0!'):
         hungarian_pooling(weights, edges, -1, -1)
     assignment = hungarian_pooling(weights, edges, cols, rows)
     assert assignment.size(0) == N

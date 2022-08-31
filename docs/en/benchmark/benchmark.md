@@ -4,7 +4,7 @@
 - Metrics:  The median translation (cm) and rotation (degree) errors(Best results are marked as **bold**).
 
 | Method | Great Court | Kings College | Old Hospital | Shop Facade | St M. Church | Avg |
-| ------ | ------ |  ------ | ------ | ------ | ------ | ------ | 
+| ------ | ------ |  ------ | ------ | ------ | ------ | ------ |
 | DSAC++ | 40.3, 0.20 | 17.7, 0.30 | 19.6, 0.30 | 5.7, 0.30 | 12.5, 0.40 | 19.2, 0.3 |
 | NG-DSAC | 34.8, 0.18 | 12.2,0.23 | 21.2, 0.45 | 5.4, 0.29 | 9.9, 0.31 | 16.7, 0.29 |
 | PixLoc | 30.0, 0.14 | 14.0,0.24 | 16.0, 0.32 | 5.0, 0.23 | 10.0, 0.34 | 15.0, 0.25 |

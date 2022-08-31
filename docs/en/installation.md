@@ -1,19 +1,19 @@
 ## Installation
 XRLocalization is mainly based on Python >= 3.7, XRPrimer >= 0.5.2 and PyTorch >= 1.1.
-As long as the environment is ready, the installation is very simple. In this section, 
+As long as the environment is ready, the installation is very simple. In this section,
 we show how to prepare an environment and install XRLocalization.
 
 ### Ubuntu
 ### Prerequisites
-If you have install docker on your machine, we recommend that you directly 
-use docker to build the running environment. 
+If you have install docker on your machine, we recommend that you directly
+use docker to build the running environment.
 ```commandline
 cd docker
 docker build . -t xrlocalization:latest
-``` 
+```
 If not, you can refer the following steps.
 
-**step 0.** 
+**step 0.**
 Install the dependencies from the default Ubuntu repositories:
 ```commandline
 sudo apt-get update && apt-get install -y \
@@ -32,12 +32,12 @@ For example(on Linux 640-bit machine):
 ```commandline
 wget https://repo.anaconda.com/miniconda/Miniconda3-py37_4.12.0-Linux-x86_64.sh
 sh Miniconda3-py37_4.12.0-Linux-x86_64.sh
-``` 
+```
 
 **step 2.**
-Create an environment with Python=3.7. 
+Create an environment with Python=3.7.
 ```commandline
-conda create --name xrloc python=3.7 
+conda create --name xrloc python=3.7
 conda activate xrloc
 ```
 Note that Python >= 3.7 is required.
@@ -75,4 +75,3 @@ git submodule update --init
 cd xrlocalization
 python3 setup.py install
 ```
-

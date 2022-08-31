@@ -15,7 +15,6 @@ from recon_read_write_data import read_features_binary
 
 
 class ConvertReconstruction2LocMap(object):
-
     def __init__(self, feature_file_path, reconstruction_path):
 
         image_bin_path = os.path.join(reconstruction_path, 'images.bin')
@@ -33,7 +32,7 @@ class ConvertReconstruction2LocMap(object):
 
     def cache_features(self):
         logging.info('Begin cache all descriptors ...')
-        Descriptors = collections.namedtuple("Descriptors", ["descriptors"])
+        Descriptors = collections.namedtuple('Descriptors', ['descriptors'])
         tmp_feature = self.features
         self.features = {}
         for image_id, image_name in tqdm(self.id2image_names.items()):
@@ -126,8 +125,7 @@ class ConvertReconstruction2LocMap(object):
 
 
 def main(feature_path, model_path, output_path):
-    crm = ConvertReconstruction2LocMap(feature_path,
-                                       model_path)
+    crm = ConvertReconstruction2LocMap(feature_path, model_path)
     crm.convert_to_mean_descriptor_map(output_path)
 
 

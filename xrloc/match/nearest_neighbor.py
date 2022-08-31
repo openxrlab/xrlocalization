@@ -41,7 +41,7 @@ def nearest_neighbor(descriptors1,
 
 
 class NearestNeighborMatcher:
-    """Find the nearest neighbor
+    """Find the nearest neighbor.
 
     Args:
         config (dict): Refer to default_config
@@ -55,7 +55,7 @@ class NearestNeighborMatcher:
         required_keys = ['2d_descriptors', '3d_descriptors']
         for key in required_keys:
             if key not in data:
-                raise ValueError(key + " not exist in input")
+                raise ValueError(key + ' not exist in input')
         return nearest_neighbor(data['2d_descriptors'], data['3d_descriptors'],
                                 self.config['ratio'], self.config['dis_thres'],
                                 self.config['cross_check'])

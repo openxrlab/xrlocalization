@@ -8,8 +8,7 @@ from xrloc.utils.miscs import count_time
 
 
 class Extractor:
-    """Currently support extractor including local and global
-    """
+    """Currently support extractor including local and global."""
     support_extractors = {
         'd2net': {
             'image_size': 640,

@@ -7,10 +7,7 @@ from xrloc.map.read_write_model import read_images_binary
 from recon_read_write_data import ImageLocalFeature, write_features_binary
 
 
-def main(image_dir,
-         image_bin_path,
-         feature_bin_path,
-         extractor_name='d2net'):
+def main(image_dir, image_bin_path, feature_bin_path, extractor_name='d2net'):
     """Create image database depend on images.bin
     Args:
         image_dir (str): Path to image directory

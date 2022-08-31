@@ -15,7 +15,8 @@ def test_read_image():
     im = image.read_image(image_path, grayscale=True)
     assert im.shape == (1440, 1920)
     image_path = os.path.join(image_dir, '000001.png')
-    with pytest.raises(ValueError, match="Cannot read image {}".format(image_path)):
+    with pytest.raises(ValueError,
+                       match='Cannot read image {}'.format(image_path)):
         image.read_image(image_path, grayscale=False)
 
 
@@ -23,8 +24,8 @@ def test_resize_image():
     image_path = os.path.join(image_dir, '000001.jpg')
     im = image.read_image(image_path, grayscale=False)
     rim, factor = image.image_resize(im, 640)
-    assert rim.shape == (im.shape[0]/3, im.shape[1]/3, 3)
-    assert abs(factor-1/3) < 1e-6
+    assert rim.shape == (im.shape[0] / 3, im.shape[1] / 3, 3)
+    assert abs(factor - 1 / 3) < 1e-6
     rim, factor = image.image_resize(im, 1930)
     assert rim.shape == im.shape
     assert factor == 1

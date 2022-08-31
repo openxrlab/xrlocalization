@@ -5,6 +5,7 @@ import subprocess
 
 dataset_dir = 'tests/data'
 
+
 @pytest.fixture(scope='session', autouse=True)
 def fixture():
     if os.path.exists(dataset_dir):
@@ -12,7 +13,7 @@ def fixture():
     url = 'https://openxrlab-share.oss-cn-hongkong.aliyuncs.com/xrlocalization/meta/xrloc-test-meta.tar.gz'
     command = ['wget', '--no-check-certificate', url]
     subprocess.run(command, check=True)
-    command = ['tar', '-xf',  'xrloc-test-meta.tar.gz']
+    command = ['tar', '-xf', 'xrloc-test-meta.tar.gz']
     subprocess.run(command, check=True)
     command = ['mv', 'xrloc-test-meta', dataset_dir]
     subprocess.run(command, check=True)
@@ -21,4 +22,3 @@ def fixture():
     yield
     command = ['rm', '-rf', dataset_dir]
     subprocess.run(command, check=True)
-

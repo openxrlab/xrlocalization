@@ -1,13 +1,13 @@
 {
-    "local_feature": "d2net",
-    "global_feature": "netvlad",
+  "local_feature": "d2net",
+  "global_feature": "netvlad",
 
-    "matcher": "gam",
-    "coarse": "sr",
+  "matcher": "gam",
+  "coarse": "sr",
 
-    "retrieval_num": 20,
-    "scene_size": 20,
+  "retrieval_num": 20,
+  "scene_size": 20,
 
-    "max_inlier": 50,
-    "max_scene_num": 2
+  "max_inlier": 50,
+  "max_scene_num": 2
 }

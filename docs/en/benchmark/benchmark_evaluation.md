@@ -1,8 +1,8 @@
 # Benchmark Evaluation
-In this part, we introduce how to do evaluation on public datasets, which would 
-provide reference images and query images. The reference image has usually been 
+In this part, we introduce how to do evaluation on public datasets, which would
+provide reference images and query images. The reference image has usually been
 reconstructed using SfM and provides the corresponding camera poses. We provide
-a tool `run_benchmark.py` for evaluation. 
+a tool `run_benchmark.py` for evaluation.
 ```commandline
 python3 run_benchmark.py \
     --map_path /path/to/localization_map \
@@ -12,7 +12,7 @@ python3 run_benchmark.py \
 
 ## Preparation
 
-Before running `run_benchmark.py`, we need to provide `localization map`, `query file` 
+Before running `run_benchmark.py`, we need to provide `localization map`, `query file`
 and a `json file`.
 
 **0.** Generate `localization map`
@@ -37,7 +37,7 @@ format `fx fy cx cy`.
 
 **2.** Set configuration through `json_file`
 
-We can specify configuration through a `json_file`. We provide a template json at 
+We can specify configuration through a `json_file`. We provide a template json at
 `configs/sample.json`.
 ```json
 {
@@ -58,15 +58,15 @@ Note that both `local_feature` and `global_feature` must be the same as when con
 localization map.
 
 ## Extracting results
-The tool does not store any results. If you intend to use the estimated camera poses, 
-the log produced by the tool should be stored in a log file. For example, 
+The tool does not store any results. If you intend to use the estimated camera poses,
+the log produced by the tool should be stored in a log file. For example,
 ```commandline
 python3 run_benchmark.py \
-    --map_path /path/to/map \ 
+    --map_path /path/to/map \
     --query_path /path/to/query.txt \
     --json /path/to/json_file > result.log &
 ```
-Then, you can use the provided log parsing script to extract camera pose from the log file 
+Then, you can use the provided log parsing script to extract camera pose from the log file
 and do you want to do.
 ```commandline
 python3 tools/loc_log_parser.py --logs /path/to/result.log

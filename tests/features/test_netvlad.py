@@ -8,10 +8,7 @@ from xrloc.features.netvlad import NetVLAD
 def test_init():
     net = NetVLAD()
     assert hasattr(net, 'whiten')
-    config = {
-        'model_name': 'VGG16-NetVLAD-Pitts30K',
-        'whiten': False
-    }
+    config = {'model_name': 'VGG16-NetVLAD-Pitts30K', 'whiten': False}
     net = NetVLAD(config)
     assert not hasattr(net, 'whiten')
 
@@ -25,10 +22,7 @@ def test_forward():
     data = net(image)
     assert 'global_descriptor' in data
     assert data['global_descriptor'].shape[1] == 4096
-    config = {
-        'model_name': 'VGG16-NetVLAD-Pitts30K',
-        'whiten': False
-    }
+    config = {'model_name': 'VGG16-NetVLAD-Pitts30K', 'whiten': False}
     net = NetVLAD(config).to(device)
     data = net(image)
     assert 'global_descriptor' in data
