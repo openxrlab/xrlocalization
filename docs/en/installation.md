@@ -68,11 +68,11 @@ pip install -r requirements.txt
 **step 6.**
 Clone xrlocalization
 ```commandline
-git clone  --recursive  https://gitlab.bj.sensetime.com/openxrlab/xrlocalization
+git clone --recursive https://github.com/openxrlab/xrlocalization.git
 ```
 Or
 ```commandline
-clone  https://gitlab.bj.sensetime.com/openxrlab/xrlocalization
+git clone https://github.com/openxrlab/xrlocalization.git
 git submodule update --init
 ```
 
