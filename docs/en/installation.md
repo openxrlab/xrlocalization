@@ -60,9 +60,15 @@ Note that we only test our code with Pytorch 1.1 and Pytorch 1.9.
 
 
 **step 5.**
+Install other requirements
+```commandline
+pip install -r requirements.txt
+```
+
+**step 6.**
 Clone xrlocalization
 ```commandline
-clone  --recursive  https://gitlab.bj.sensetime.com/openxrlab/xrlocalization
+git clone  --recursive  https://gitlab.bj.sensetime.com/openxrlab/xrlocalization
 ```
 Or
 ```commandline
