@@ -6,7 +6,7 @@ English | [简体中文](README_CN.md)
 XRLocalization is an open source visual localization toolbox based on Python. It is a
 part of the OpenXRLab project.
 
-https://user-images.githubusercontent.com/111835288/187701292-06c9947a-932a-44d4-b5c0-4b35feed907b.mp4
+https://user-images.githubusercontent.com/111835288/187731838-45ccbfaf-8a19-46a1-bd53-29c56793642c.mp4
 
 ### Major Features
 
