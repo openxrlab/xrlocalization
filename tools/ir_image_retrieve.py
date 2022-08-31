@@ -57,7 +57,8 @@ def main(database_path,
             query.add_image(image, i, image_name)
         query.create()
 
-    retrieve_num = retrieve_num if retrieve_num < database.size else database.size
+    retrieve_num = retrieve_num if retrieve_num < database.size else\
+        database.size
     sim = torch.einsum('md,nd->mn', query.feature_data, database.feature_data)
     indices = torch.topk(sim, retrieve_num, dim=1).indices.cpu().numpy()
 

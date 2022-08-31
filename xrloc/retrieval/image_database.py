@@ -1,10 +1,6 @@
 import pickle
 import torch
-import os
-
 import numpy as np
-
-import xrloc.utils.miscs as miscs
 
 
 class ImageDatabase(object):
@@ -13,6 +9,7 @@ class ImageDatabase(object):
     Args:
         path_to_database (str, optional): Path to image database
     """
+
     def __init__(self, path_to_database=None):
         self.feature_data = []
         self.index_to_image_id = []

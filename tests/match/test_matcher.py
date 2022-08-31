@@ -24,7 +24,7 @@ def test_init_nn_cross():
     assert 'dis_thres' in matcher.config.keys()
     assert matcher.config['dis_thres'] == False
     assert 'cross_check' in matcher.config.keys()
-    assert matcher.config['cross_check'] == True
+    assert matcher.config['cross_check']
     assert isinstance(matcher.model, NearestNeighborMatcher)
 
 
@@ -35,7 +35,7 @@ def test_init_nn_ratio_cross():
     assert 'dis_thres' in matcher.config.keys()
     assert matcher.config['dis_thres'] == False
     assert 'cross_check' in matcher.config.keys()
-    assert matcher.config['cross_check'] == True
+    assert matcher.config['cross_check']
     assert isinstance(matcher.model, NearestNeighborMatcher)
 
 
@@ -46,7 +46,7 @@ def test_init_nn_ratio_distance_cross():
     assert 'dis_thres' in matcher.config.keys()
     assert matcher.config['dis_thres'] == 0.9
     assert 'cross_check' in matcher.config.keys()
-    assert matcher.config['cross_check'] == True
+    assert matcher.config['cross_check']
     assert isinstance(matcher.model, NearestNeighborMatcher)
 
 

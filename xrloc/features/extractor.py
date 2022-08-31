@@ -4,7 +4,7 @@ import numpy as np
 from xrloc import features
 from xrloc.utils.image import image_resize
 from xrloc.utils.image import convert_gray_image
-from xrloc.utils.miscs import count_time
+# from xrloc.utils.miscs import count_time
 
 
 class Extractor:
@@ -31,9 +31,10 @@ class Extractor:
     Args:
         name (str): The name of extractor supported in support_extractors
     """
+
     def __init__(self, name):
         if name not in self.support_extractors.keys():
-            raise ValueError('Not support the extractor {}'. \
+            raise ValueError('Not support the extractor {}'.
                              format(name))
         self.config = self.support_extractors[name]
         model = self.make_model(name)

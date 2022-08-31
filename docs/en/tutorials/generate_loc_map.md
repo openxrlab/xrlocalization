@@ -19,7 +19,7 @@ xrloc:
 ```commandline
 python3 tools/loc_convert_reconstruction.py \
     --feature_path /path/to/features.bin \
-    --model_path /path/to/include/images.bin/and/points3Ds.bin/direcotry \
+    --model_path /path/to/include/images.bin/and/points3Ds.bin/directory \
     --output_path /path/to/map/directory
 ```
 This would produce three new file `images.bin`, `points3D.bin`, `features.bin`
@@ -29,7 +29,7 @@ hloc:
 ```commandline
 python3 tools/loc_convert_reconstruction.py \
     --feature_path /path/to/feats-xxxx.h5 \
-    --model_path /path/to/include/images.bin/and/points3Ds.bin/direcotry \
+    --model_path /path/to/include/images.bin/and/points3Ds.bin/directory \
     --output_path /path/to/map/directory
 ```
 The only difference is at `--feature_path /path/to/feats-xxxx.h5`.  The output is the same as xrloc.
