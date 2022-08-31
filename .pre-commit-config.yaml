@@ -1,4 +1,4 @@
-exclude: .*/test/data/|.clang-format
+exclude: .*/test/data/|.clang-format|./3rdparty
 repos:
   - repo: https://github.com/pre-commit/mirrors-clang-format
     rev: v14.0.1
@@ -13,11 +13,6 @@ repos:
     hooks:
       - id: seed-isort-config
         args: [--settings-path, ./]
-  - repo: https://github.com/PyCQA/isort.git
-    rev: 5.10.1
-    hooks:
-      - id: isort
-        args: [--settings-file, ./setup.cfg]
   - repo: https://github.com/pre-commit/mirrors-yapf.git
     rev: v0.30.0
     hooks:

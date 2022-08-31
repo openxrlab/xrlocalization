@@ -16,14 +16,11 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get install -y wget
 
-RUN export http_proxy=http://proxy.sensetime.com:3128/
-RUN export https_proxy=http://proxy.sensetime.com:3128/
-RUN export HTTP_PROXY=http://proxy.sensetime.com:3128/
-RUN export HTTPS_PROXY=http://proxy.sensetime.com:3128/
 
 # Python dependency
 RUN pip install xrprimer==0.5.2 -i \
     https://repo.sensetime.com/repository/pypi/simple
+RUN pip install scipy==1.6.1
 RUN pip install opencv-python==3.4.9.33
 RUN pip install matplotlib==3.2.1
 RUN pip install sklearn
