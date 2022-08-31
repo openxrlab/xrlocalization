@@ -42,7 +42,7 @@ def test_convert_gray_image():
 
 def test_image_dataset():
     data = image.ImageDataSet(image_dir, do_read=False)
-    assert len(data) == 6
+    assert len(data) == 3
     data = image.ImageDataSet(image_dir, do_read=True)
-    assert len(data) == 6
+    assert len(data) == 3
     assert data[0].shape == (1440, 1920, 3)

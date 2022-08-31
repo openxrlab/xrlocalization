@@ -12,16 +12,7 @@ image_dir = 'tests/data/query'
 
 def test_init_localizer():
     loc = Localizer(map_path=map_path)
-    assert loc.config == {
-        'local_feature': 'superpoint',
-        'global_feature': 'netvlad',
-        'matcher': 'nn',
-        'coarse': 'sr',
-        'retrieval_num': 20,
-        'scene_size': 20,
-        'max_inlier': 100,
-        'max_scene_num': 2
-    }
+    assert loc.database is not None
     with pytest.raises(ValueError, match='Not found database under map: {}'.format(image_dir)):
         Localizer(map_path=image_dir)
 
@@ -31,7 +22,7 @@ def test_extract_features():
     image = read_image(os.path.join(image_dir, '000001.jpg'))
     keypoints, descriptors = loc.extract_features(image)
     assert keypoints.shape[0] == 2
-    assert descriptors.shape[0] == 256
+    assert descriptors.shape[0] == 512
 
 
 

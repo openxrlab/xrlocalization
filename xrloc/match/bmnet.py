@@ -138,7 +138,7 @@ class BipartiteMatchingNet(nn.Module):
             # 'hpooling'] else None
         self.conv = nn.Conv1d(self.config['channels2'][-1], 1, kernel_size=1)
 
-        url = 'https://sensear-map.oss-cn-hangzhou.aliyuncs.com/stloc_sdk/bmnet.pth'
+        url = 'https://openxrlab-share.oss-cn-hongkong.aliyuncs.com/xrlocalization/weights/bmnet.pth'
         model_dir = get_parent_dir(__file__) + '/../models/'
 
         model_name = 'bmnet.pth'

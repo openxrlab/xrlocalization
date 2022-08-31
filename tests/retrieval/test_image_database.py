@@ -94,6 +94,6 @@ def test_save_binary():
 
 def test_load_binary():
     idb = ImageDatabase('tests/data/map/database.bin')
-    assert len(idb.feature_data) == 2145
-    assert len(idb.index_to_image_id) == 2145
-    assert idb.size == 2145
+    assert len(idb.feature_data) == 231
+    assert len(idb.index_to_image_id) == 231
+    assert idb.size == 231
