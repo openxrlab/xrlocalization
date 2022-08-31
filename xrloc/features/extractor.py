@@ -31,11 +31,9 @@ class Extractor:
     Args:
         name (str): The name of extractor supported in support_extractors
     """
-
     def __init__(self, name):
         if name not in self.support_extractors.keys():
-            raise ValueError('Not support the extractor {}'.
-                             format(name))
+            raise ValueError('Not support the extractor {}'.format(name))
         self.config = self.support_extractors[name]
         model = self.make_model(name)
         self.extractor = model(self.config['model'])

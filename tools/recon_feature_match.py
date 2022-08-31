@@ -42,8 +42,9 @@ def generate_image_pair_depend_recon(images, point3ds, image_pairs_num=5):
         covisible_pairs = sorted(covisible_pairs,
                                  key=lambda k: k[1],
                                  reverse=True)
-        covisible_image_ids[image_id] = [id for id, num_point in
-                                         covisible_pairs[:image_pairs_num]]
+        covisible_image_ids[image_id] = [
+            id for id, num_point in covisible_pairs[:image_pairs_num]
+        ]
 
     pairid_set = set()
     for image_id1 in covisible_image_ids:
