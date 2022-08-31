@@ -23,7 +23,7 @@ class Localizer(object):
     default_config = {
         'local_feature': 'd2net',
         'global_feature': 'netvlad',
-        'matcher': 'nn',
+        'matcher': 'nn+cross',
         'coarse': 'sr',
         'retrieval_num': 20,
         'scene_size': 20,
