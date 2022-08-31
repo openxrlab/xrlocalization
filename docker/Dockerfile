@@ -23,7 +23,7 @@ RUN pip install xrprimer==0.5.2 -i \
 RUN pip install scipy==1.6.1
 RUN pip install opencv-python==3.4.9.33
 RUN pip install matplotlib==3.2.1
-RUN pip install sklearn
+RUN pip install scikit-learn==0.24.1
 RUN pip install flask
 RUN pip install h5py
 RUN pip install pathlib
