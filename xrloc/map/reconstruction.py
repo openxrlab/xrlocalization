@@ -1,5 +1,6 @@
 # Copyright (c) OpenXRLab. All rights reserved.
 import os
+import logging
 
 import numpy as np
 
@@ -43,6 +44,11 @@ class Reconstruction(object):
             list[int]: Co-visible image ids
         """
         covisible_images_to_num_points = {}
+        if image_id not in self.images:
+            logging.error('Image id {} not exist in reconstruction. The reason '
+                          'may be you did not specify images_bin_path when '
+                          'creating database.bin '.format(image_id))
+            return []
         point3d_ids = self.images[image_id].point3D_ids
         for point3d_id in point3d_ids:
             if point3d_id == -1:

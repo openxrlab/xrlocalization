@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-     - main
+     - dev
     paths-ignore:
       - 'README.md'
       - 'README_CN.md'
@@ -35,7 +35,7 @@ jobs:
       - name: Run unittests and generate coverage report
         run: |
           apt install -y git
-          git submodule update --init --recursive
+          git submodule update --init
           pip install pytest
           pip install coverage
 #          coverage run --source xrlocalization -m pytest tests/
