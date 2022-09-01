@@ -42,13 +42,8 @@ conda activate xrloc
 ```
 Note that Python >= 3.7 is required.
 
-**step 3.**
-Install XRPrimer
-```commandline
-pip install xrprimer==0.5.2
-```
 
-**step 4.**
+**step 3.**
 Install PyTorch
 
 Please refer to [here](https://pytorch.org/) for PyTorch installation. For example:
@@ -57,14 +52,7 @@ conda install pytorch torchvision -c pytorch
 ```
 Note that we only test our code with Pytorch 1.1 and Pytorch 1.9.
 
-
-**step 5.**
-Install other requirements
-```commandline
-pip install -r requirements.txt
-```
-
-**step 6.**
+**step 4.**
 Clone xrlocalization
 ```commandline
 git clone --recursive https://github.com/openxrlab/xrlocalization.git
@@ -74,6 +62,15 @@ Or
 git clone https://github.com/openxrlab/xrlocalization.git
 git submodule update --init
 ```
+
+**step 5.**
+Install other requirements
+```commandline
+cd xrlocalization
+pip install -r requirements.txt
+```
+
+
 
 ### Installation
 ```commandline
