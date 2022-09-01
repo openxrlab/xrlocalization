@@ -6,7 +6,6 @@ import subprocess
 import numpy as np
 
 from pathlib import Path
-from xrloc.map.read_write_model import qvec2rotmat
 from functools import wraps
 
 
