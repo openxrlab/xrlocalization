@@ -38,14 +38,14 @@ jobs:
           git submodule update --init
           pip install pytest
           pip install coverage
-          coverage run --source xrlocalization -m pytest tests/
-          coverage xml
-          coverage report -m
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          files: ./coverage.xml
-          flags: unittests
-          env_vars: OS,PYTHON
-          name: codecov-umbrella
-          fail_ci_if_error: false
+#          coverage run --source xrlocalization -m pytest tests/
+#          coverage xml
+#          coverage report -m
+#      - name: Upload coverage to Codecov
+#        uses: codecov/codecov-action@v2
+#        with:
+#          files: ./coverage.xml
+#          flags: unittests
+#          env_vars: OS,PYTHON
+#          name: codecov-umbrella
+#          fail_ci_if_error: false
