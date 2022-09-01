@@ -19,11 +19,19 @@ https://user-images.githubusercontent.com/111835288/187731838-45ccbfaf-8a19-46a1
 
 ### Major Features
 
+* Robust and efficient large-scale feature-based visual localization
+* Both offline and online visual localization are supported
+* A hierarchical framework that can easily integrate new features and matching methods
+
 ## Installation
 Please refer to [Installation](docs/en/installation.md) for installation instructions.
 
 ## Getting Started
 Please refer to [quick start](docs/en/get_started.md) for the basic usage of XRLocalization.
+
+## Benchmark
+Please refer to [benchmark](docs/en/benchmark/benchmark.md).
+
 
 ## License
 This project is released under the [Apache 2.0 license](LICENSE).
