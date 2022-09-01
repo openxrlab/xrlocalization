@@ -32,6 +32,10 @@ Please refer to [quick start](docs/en/get_started.md) for the basic usage of XRL
 ## Benchmark
 Please refer to [benchmark](docs/en/benchmark/benchmark.md).
 
+## AR Demo
+Please refer to [here](http://doc.openxrlab.org.cn/openxrlab_document/ARDemo/ARdemo.html) for building your own AR application.
+[Here](https://user-images.githubusercontent.com/44204704/187864126-e9cd7a43-a773-487d-ad01-4cc2988f3b5a.mp4) 
+is an AR demo based on XRLocalization.
 
 ## License
 This project is released under the [Apache 2.0 license](LICENCE).
