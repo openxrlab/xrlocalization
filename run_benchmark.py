@@ -1,7 +1,7 @@
-import logging
-import time
 import argparse
 import json
+import logging
+import time
 
 from xrloc.localizer import Localizer
 from xrloc.utils.dataset import read_ios_logger_query_dataset
@@ -36,7 +36,7 @@ def main(query_path, map_path, json_path=None):
         logging.info('Final inlier num:{0}'.format(ret['ninlier']))
 
     avg_time = (time.time() - beg_time) / len(dataset)
-    logging.info('Log avg time: {0} ms'.format(avg_time))
+    logging.info('Log avg time: {0} ms'.format(avg_time * 1000))
 
     logging.info('End loc ...')
 

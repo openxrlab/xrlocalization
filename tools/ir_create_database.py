@@ -8,7 +8,10 @@ from xrloc.map.read_write_model import read_images_binary
 from xrloc.utils.miscs import glob_images
 
 
-def main(image_dir, database_path, image_bin_path='', extractor_name='netvlad'):
+def main(image_dir,
+         database_path,
+         image_bin_path='',
+         extractor_name='netvlad'):
     """Create image database depend on images.bin
     Args:
         image_dir (str): Path to image directory
@@ -44,7 +47,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--image_dir', type=str, required=True)
     parser.add_argument('--database_path', type=str, required=True)
-    parser.add_argument('--image_bin_path', type=str, required=False, default='')
+    parser.add_argument('--image_bin_path',
+                        type=str,
+                        required=False,
+                        default='')
     parser.add_argument('--extractor',
                         type=str,
                         required=False,
@@ -52,5 +58,5 @@ if __name__ == '__main__':
                         choices=list(Extractor.support_extractors))
     args = parser.parse_args()
 
-    main(args.image_dir,  args.database_path, args.image_bin_path,
+    main(args.image_dir, args.database_path, args.image_bin_path,
          args.extractor)

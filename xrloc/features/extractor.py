@@ -4,12 +4,11 @@ import numpy as np
 from xrloc import features
 from xrloc.utils.image import image_resize
 from xrloc.utils.image import convert_gray_image
-from xrloc.utils.miscs import count_time
+# from xrloc.utils.miscs import count_time
 
 
 class Extractor:
-    """Currently support extractor including local and global
-    """
+    """Currently support extractor including local and global."""
     support_extractors = {
         'd2net': {
             'image_size': 640,
@@ -34,8 +33,7 @@ class Extractor:
     """
     def __init__(self, name):
         if name not in self.support_extractors.keys():
-            raise ValueError('Not support the extractor {}'. \
-                             format(name))
+            raise ValueError('Not support the extractor {}'.format(name))
         self.config = self.support_extractors[name]
         model = self.make_model(name)
         self.extractor = model(self.config['model'])

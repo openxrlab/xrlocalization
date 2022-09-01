@@ -1,0 +1,51 @@
+name: build
+
+on:
+  push:
+    branches:
+     - main
+    paths-ignore:
+      - 'README.md'
+      - 'README_CN.md'
+      - 'docs/**'
+
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'README_CN.md'
+      - 'docs/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_cuda102:
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        shell: bash -l {0}
+    container:
+      image: openxrlab/xrlocalization_runtime:ubuntu1804_x64_cu102_py37_torch190
+      credentials:
+        username: ${{secrets.DOCKERHUB_USERNAME}}
+        password: ${{secrets.DOCKERHUB_PWD}}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run unittests and generate coverage report
+        run: |
+          apt install -y git
+          git submodule update --init --recursive
+          pip install pytest
+          pip install coverage
+#          coverage run --source xrlocalization -m pytest tests/
+#          coverage xml
+#          coverage report -m
+#      - name: Upload coverage to Codecov
+#        uses: codecov/codecov-action@v2
+#        with:
+#          files: ./coverage.xml
+#          flags: unittests
+#          env_vars: OS,PYTHON
+#          name: codecov-umbrella
+#          fail_ci_if_error: false

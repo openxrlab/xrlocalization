@@ -3,11 +3,11 @@ import struct
 import numpy as np
 
 ImageLocalFeature = collections.namedtuple(
-    "ImageLocalFeature",
-    ["id", "name", "width", "height", "point2ds", "descriptors"])
+    'ImageLocalFeature',
+    ['id', 'name', 'width', 'height', 'point2ds', 'descriptors'])
 
 ImageFeatureMatch = collections.namedtuple(
-    "ImageFeatureMatch", ["image_id1", "image_id2", "matches"])
+    'ImageFeatureMatch', ['image_id1', 'image_id2', 'matches'])
 
 
 def imagepair_to_pairid(image_id1, image_id2):
@@ -51,7 +51,7 @@ def read_features_binary(path_to_image_features_bin):
             name = ''
             ch = struct.unpack('<c', file.read(1))[0]
             while ch != b'\0':
-                name += str(ch, encoding="utf-8")
+                name += str(ch, encoding='utf-8')
                 ch = struct.unpack('<c', file.read(1))[0]
             width = struct.unpack('<Q', file.read(8))[0]
             height = struct.unpack('<Q', file.read(8))[0]

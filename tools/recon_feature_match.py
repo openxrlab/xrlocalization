@@ -27,21 +27,24 @@ def generate_image_pair_depend_recon(images, point3ds, image_pairs_num=5):
         covisible_images_to_num_points = {}
         point3D_ids = images[image_id].point3D_ids
         for point3D_id in point3D_ids:
-            if point3D_id == -1: continue
+            if point3D_id == -1:
+                continue
             image_ids = point3ds[point3D_id].image_ids
             for id in image_ids:
-                if id == image_id: continue
+                if id == image_id:
+                    continue
                 if id in covisible_images_to_num_points:
                     covisible_images_to_num_points[id] += 1
                 else:
                     covisible_images_to_num_points[id] = 1
-        covisible_pairs = [(id, covisible_images_to_num_points[id]) \
-                                for id in covisible_images_to_num_points]
+        covisible_pairs = [(id, covisible_images_to_num_points[id])
+                           for id in covisible_images_to_num_points]
         covisible_pairs = sorted(covisible_pairs,
                                  key=lambda k: k[1],
                                  reverse=True)
-        covisible_image_ids[image_id] = [id for id, num_point in \
-                                covisible_pairs[:image_pairs_num]]
+        covisible_image_ids[image_id] = [
+            id for id, num_point in covisible_pairs[:image_pairs_num]
+        ]
 
     pairid_set = set()
     for image_id1 in covisible_image_ids:
@@ -81,7 +84,8 @@ def main(recon_path,
          f_verify_thres=12):
     """Create image database depend on images.bin
     Args:
-        recon_path (str): Path to recon dir including images.bin and points3D.bin
+        recon_path (str): Path to recon dir including images.bin
+        and points3D.bin
         feature_bin_path (str): Path to features.bin path for read
         match_bin_path (str): Path to matches.bin path for write
         covis: The number of co-visible 3D points

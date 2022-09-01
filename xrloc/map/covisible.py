@@ -1,8 +1,6 @@
 # Copyright (c) OpenXRLab. All rights reserved.
 class QuickUnion(object):
-    """QuickUnion
-    """
-
+    """QuickUnion."""
     def __init__(self, vtx):
         assert vtx is not None
         self.vtx = vtx

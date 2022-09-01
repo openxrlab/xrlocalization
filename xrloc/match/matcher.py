@@ -37,7 +37,6 @@ class Matcher(object):
     Args:
         name (str): The name of matcher supported in support_extractors
     """
-
     def __init__(self, name):
         if name not in support_matchers.keys():
             raise ValueError('Not support the extractor {}'. \

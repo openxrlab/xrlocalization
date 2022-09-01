@@ -1,6 +1,6 @@
 # Add new local feature extractor
 In this part, we introduce how to add a new feature extractor to XRLocalization.
-The XRLocalization has provided a global feature `netvlad` and a local feature 
+The XRLocalization has provided a global feature `netvlad` and a local feature
 `d2net`. If you intend to use other feature like `superpoint` in your experiment,
 a few steps should be taken as follow.
 
@@ -66,7 +66,7 @@ support_extractors = {
 }
 ```
 
-Now, you can use `superpoint` in your experiments. Note that 
-`superpoint` is not permitted for commercial usage. 
-This project does not include `superpoint` code. If you use `superpoint`, 
+Now, you can use `superpoint` in your experiments. Note that
+`superpoint` is not permitted for commercial usage.
+This project does not include `superpoint` code. If you use `superpoint`,
 you need to download it by yourself, and please abide by its license.

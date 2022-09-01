@@ -23,7 +23,7 @@ class Localizer(object):
     default_config = {
         'local_feature': 'd2net',
         'global_feature': 'netvlad',
-        'matcher': 'nn',
+        'matcher': 'nn+cross',
         'coarse': 'sr',
         'retrieval_num': 20,
         'scene_size': 20,
@@ -32,7 +32,7 @@ class Localizer(object):
     }
 
     def __init__(self, map_path, config=default_config):
-        head_logging("XRLocalization")
+        head_logging('XRLocalization')
         self.config = config
         database_path = os.path.join(map_path, 'database.bin')
         if not os.path.exists(database_path):
@@ -47,17 +47,15 @@ class Localizer(object):
 
         self.matcher = Matcher(self.config['matcher'])
         config_logging(self.config)
-        head_logging("Init Success")
+        head_logging('Init Success')
 
     def extract_features(self, image):
-        """Extract local feature
-        """
+        """Extract local feature."""
         data = self.lextractor.extract(image)
         return data['keypoints'], data['descriptors']
 
     def coarse_localize(self, image):
-        """Coarse localization phase
-        """
+        """Coarse localization phase."""
         image_feature = self.gextractor.extract(image)
         image_ids = self.database.retrieve(image_feature,
                                            self.config['retrieval_num'])
@@ -77,8 +75,7 @@ class Localizer(object):
 
     def feature_match(self, query_points, query_point_descriptors,
                       train_points, train_point_descriptors, width, height):
-        """Feature matching phase
-        """
+        """Feature matching phase."""
         data = {
             'width': width,
             'height': height,
@@ -91,8 +88,7 @@ class Localizer(object):
         return matches, priors
 
     def prior_guided_pose_estimation(self, point2Ds, point3Ds, priors, camera):
-        """Pose estimation phase
-        """
+        """Pose estimation phase."""
         point2Ds = point2Ds.astype('float32').copy()
         point3Ds = point3Ds.astype('float32').copy()
         params = VectorDouble(camera[3])
@@ -116,16 +112,17 @@ class Localizer(object):
         width, height = camera[1], camera[2]
         point2ds_coordinates, point2d_descriptors = self.extract_features(
             image)
-        logging.info("Local feature number: {0}".format(point2ds_coordinates.shape[1]))
+        logging.info('Local feature number: {0}'.format(
+            point2ds_coordinates.shape[1]))
 
         scenes = self.coarse_localize(image)
-        logging.info("Coarse location number: {0}".format(len(scenes)))
+        logging.info('Coarse location number: {0}'.format(len(scenes)))
 
         best_ret = {
-            "ninlier": 0,
-            "qvec": np.array([1, 0, 0, 0]),
-            "tvec": np.array([0, 0, 0]),
-            "mask": None
+            'ninlier': 0,
+            'qvec': np.array([1, 0, 0, 0]),
+            'tvec': np.array([0, 0, 0]),
+            'mask': None
         }
         for i, image_ids in enumerate(scenes[:self.config['max_scene_num']]):
             point3d_ids = self.reconstruction.visible_points(image_ids)

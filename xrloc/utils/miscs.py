@@ -6,7 +6,6 @@ import subprocess
 import numpy as np
 
 from pathlib import Path
-from xrloc.map.read_write_model import qvec2rotmat
 from functools import wraps
 
 
@@ -31,7 +30,7 @@ def get_parent_dir(file, level=1):
     """
     if level <= 0:
         raise ValueError(
-            "Level should be larger than 0, but given {}".format(level))
+            'Level should be larger than 0, but given {}'.format(level))
     parent_dir = os.path.dirname(file)
     for i in range(level):
         parent_dir = os.path.join(parent_dir, '..')
@@ -39,8 +38,7 @@ def get_parent_dir(file, level=1):
 
 
 def is_image(path):
-    """Is a regular image file
-    """
+    """Is a regular image file."""
     name = os.path.basename(path).lower()
     postfixs = ['.bmp', '.png', '.jpg', '.jpeg']
     for pt in postfixs:
@@ -69,8 +67,9 @@ def glob_images(root, relative=False):
     __glob_images__(root, image_paths)
 
     if relative:
-        image_paths = [str(Path(path).relative_to(root)) for
-                       path in image_paths]
+        image_paths = [
+            str(Path(path).relative_to(root)) for path in image_paths
+        ]
 
     return sorted(image_paths)
 
@@ -162,14 +161,13 @@ def invert_pose(qvec, tvec):
 
 
 def count_time(func):
-
     @wraps(func)
     def wrapper(*args, **kwargs):
         start_time = time.time()
         result = func(*args, **kwargs)
         end_time = time.time()
         duration_time = end_time - start_time
-        print("{0} time elapse (ms): {1:.1f}".format(func.__name__,
+        print('{0} time elapse (ms): {1:.1f}'.format(func.__name__,
                                                      duration_time * 1000))
         return result
 

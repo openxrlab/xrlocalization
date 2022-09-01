@@ -1,19 +1,14 @@
 import pickle
 import torch
-import os
-
 import numpy as np
-
-import xrloc.utils.miscs as miscs
 
 
 class ImageDatabase(object):
-    """Image database: each image is represented by a fix-len vector
+    """Image database: each image is represented by a fix-len vector.
 
     Args:
         path_to_database (str, optional): Path to image database
     """
-
     def __init__(self, path_to_database=None):
         self.feature_data = []
         self.index_to_image_id = []
@@ -33,7 +28,7 @@ class ImageDatabase(object):
             image_name (str): Image name
         """
         if self.is_built:
-            raise ValueError("Image database have been built")
+            raise ValueError('Image database have been built')
         self.feature_data.append(image_feature)
         self.index_to_image_id.append(image_id)
         self.names.append(image_name)
@@ -48,9 +43,9 @@ class ImageDatabase(object):
         """
         if self.extractor is None:
             raise ValueError(
-                "Image global feature extractor have not been set")
+                'Image global feature extractor have not been set')
         if self.is_built:
-            raise ValueError("Image database have been built")
+            raise ValueError('Image database have been built')
         image_feature = self.extractor.extract(image)
         self.add_feature(image_feature, image_id, image_name)
 
@@ -62,12 +57,11 @@ class ImageDatabase(object):
         self.extractor = extractor
 
     def create(self):
-        """Create image database for image retrieval
-        """
+        """Create image database for image retrieval."""
         if self.is_built:
-            raise ValueError("Image database have been built")
+            raise ValueError('Image database have been built')
         if self.size == 0:
-            raise ValueError("Image database is empty")
+            raise ValueError('Image database is empty')
         self.feature_data = torch.from_numpy(np.array(
             self.feature_data)).squeeze(1).to(self.device)
         self.index_to_image_id = torch.from_numpy(
@@ -85,7 +79,7 @@ class ImageDatabase(object):
             array[int]: The image ids of retrieved top k images
         """
         if not self.is_built:
-            raise ValueError("Image database have not been built")
+            raise ValueError('Image database have not been built')
         if k == 0:
             return np.array([])
         if k < 0 or k > self.size:
@@ -109,10 +103,10 @@ class ImageDatabase(object):
             array[int]: The image ids of retrieved top k images
         """
         if not self.is_built:
-            raise ValueError("Image database have not been built")
+            raise ValueError('Image database have not been built')
         if self.extractor is None:
             raise ValueError(
-                "Image global feature extractor have not been set")
+                'Image global feature extractor have not been set')
         if k == 0:
             return np.array([])
         if k < 0 or k > self.size:
@@ -126,12 +120,12 @@ class ImageDatabase(object):
             path_to_database (str): Path to image database
         """
         if self.is_built:
-            raise ValueError("Image database have been built")
+            raise ValueError('Image database have been built')
         data = {
-            "features": self.feature_data,
-            "index": self.index_to_image_id,
+            'features': self.feature_data,
+            'index': self.index_to_image_id,
             'name': self.names,
-            "size": self.size
+            'size': self.size
         }
         # Always save
         # miscs.create_directory_if_not_exist(path_to_database)
@@ -147,7 +141,6 @@ class ImageDatabase(object):
             data = pickle.load(file)
         self.feature_data = data['features']
         self.index_to_image_id = data['index']
-        if 'name' in data: # Compatible with older versions
+        if 'name' in data:  # Compatible with older versions
             self.names = data['name']
         self.size = data['size']
-

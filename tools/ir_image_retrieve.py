@@ -17,14 +17,17 @@ def eliminate_duplicated_pairs(pairs):
     """
     pair_set, left_pairs = set(), list()
     for q, d in pairs:
-        pair = q+d if q < d else d+q
+        pair = q + d if q < d else d + q
         if pair not in pair_set:
             left_pairs.append((q, d))
             pair_set.add(pair)
     return left_pairs
 
 
-def main(database_path, save_path,  image_dir='', retrieve_num=20,
+def main(database_path,
+         save_path,
+         image_dir='',
+         retrieve_num=20,
          extractor_name='netvlad'):
     """Create image database depend on images.bin
     Args:
@@ -54,7 +57,8 @@ def main(database_path, save_path,  image_dir='', retrieve_num=20,
             query.add_image(image, i, image_name)
         query.create()
 
-    retrieve_num = retrieve_num if retrieve_num < database.size else database.size
+    retrieve_num = retrieve_num if retrieve_num < database.size else\
+        database.size
     sim = torch.einsum('md,nd->mn', query.feature_data, database.feature_data)
     indices = torch.topk(sim, retrieve_num, dim=1).indices.cpu().numpy()
 

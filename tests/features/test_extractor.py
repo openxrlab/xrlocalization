@@ -13,33 +13,21 @@ def test_init():
         Extractor('test')
     model = Extractor('d2net')
     assert isinstance(model.extractor, D2Net)
-    assert model.config == {
-        'image_size': 1600,
-        'gray_image': False,
-        'model': {
-            'model_name': 'd2_tf.pth',
-            'multiscale': False,
-        },
-    }
     if torch.cuda.is_available():
         assert model.device == 'cuda'
     else:
         assert model.device == 'cpu'
     model = Extractor('netvlad')
     assert isinstance(model.extractor, NetVLAD)
-    model = Extractor('d2net')
-    assert isinstance(model.extractor, D2Net)
 
 
 def test_extract():
-    width, height, channel = 640, 480, 1
+    width, height, channel = 640, 480, 3
     image = np.ones([width, height, channel])
     model = Extractor('netvlad')
     data = model.extract(image)
     assert data.shape[0] == 4096
-    image = np.ones([width, height, 1])
-    with pytest.raises(ValueError, match='Channel incorrect'):
-        model.extract(image)
+    image = np.ones([width, height, 3])
     model = Extractor('d2net')
     data = model.extract(image)
     assert 'keypoints' in data
