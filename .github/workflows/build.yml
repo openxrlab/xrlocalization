@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run unittests and generate coverage report
         run: |
-          pip instal pytest
+          pip install pytest
           pip install coverage
           coverage run --source xrlocalization -m pytest tests/
           coverage xml
