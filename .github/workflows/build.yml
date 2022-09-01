@@ -34,7 +34,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run unittests and generate coverage report
         run: |
-          coverage run --source xrmocap -m pytest tests/
+          pip install coverage
+          coverage run --source xrlocalization -m pytest tests/
           coverage xml
           coverage report -m
       - name: Upload coverage to Codecov
