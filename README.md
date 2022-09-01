@@ -53,6 +53,17 @@ If you use this toolbox or benchmark in your research, please cite this project.
     year={2022}
 }
 ```
+If you use Geometry-Aided Matching in your research, please cite:
+```bibtex
+@inproceedings{yu2020learning,
+  title={Learning bipartite graph matching for robust visual localization},
+  author={Yu, Hailin and Ye, Weicai and Feng, Youji and Bao, Hujun and Zhang, Guofeng},
+  booktitle={2020 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)},
+  pages={146--155},
+  year={2020},
+  organization={IEEE}
+}
+```
 
 ## Contributing
 We appreciate all contributions to improve XRLocalization.
