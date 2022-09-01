@@ -32,6 +32,10 @@ Please refer to [quick start](docs/en/get_started.md) for the basic usage of XRL
 ## Benchmark
 Please refer to [benchmark](docs/en/benchmark/benchmark.md).
 
+## AR Demo
+Please refer to [here](http://doc.openxrlab.org.cn/openxrlab_document/ARDemo/ARdemo.html) for building your own AR application.
+[Here](https://user-images.githubusercontent.com/44204704/187864126-e9cd7a43-a773-487d-ad01-4cc2988f3b5a.mp4) 
+is an AR demo based on XRLocalization.
 
 ## License
 This project is released under the [Apache 2.0 license](LICENCE).
@@ -47,6 +51,17 @@ If you use this toolbox or benchmark in your research, please cite this project.
     author={XRLocalization Contributors},
     howpublished = {\url{https://github.com/openxrlab/xrlocalization}},
     year={2022}
+}
+```
+If you use Geometry-Aided Matching in your research, please cite:
+```bibtex
+@inproceedings{yu2020learning,
+  title={Learning bipartite graph matching for robust visual localization},
+  author={Yu, Hailin and Ye, Weicai and Feng, Youji and Bao, Hujun and Zhang, Guofeng},
+  booktitle={2020 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)},
+  pages={146--155},
+  year={2020},
+  organization={IEEE}
 }
 ```
 
