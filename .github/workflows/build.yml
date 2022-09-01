@@ -34,6 +34,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run unittests and generate coverage report
         run: |
+          apt install -y git
+          git submodule update --init --recursive
           pip install pytest
           pip install coverage
           coverage run --source xrlocalization -m pytest tests/
