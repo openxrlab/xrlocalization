@@ -45,8 +45,7 @@ Note that Python >= 3.7 is required.
 **step 3.**
 Install XRPrimer
 ```commandline
-pip install xrprimer==0.5.2 -i \
-    https://repo.sensetime.com/repository/pypi/simple
+pip install xrprimer==0.5.2
 ```
 
 **step 4.**
