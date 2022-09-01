@@ -34,7 +34,7 @@ Please refer to [benchmark](docs/en/benchmark/benchmark.md).
 
 
 ## License
-This project is released under the [Apache 2.0 license](LICENSE).
+This project is released under the [Apache 2.0 license](LICENCE).
 
 ## FAQ
 Please refer to [FAQ](docs/en/faq.md) for frequently asked questions.
