@@ -23,11 +23,13 @@ https://user-images.githubusercontent.com/111835288/187731838-45ccbfaf-8a19-46a1
 * Both offline and online visual localization are supported
 * A hierarchical framework that can easily integrate new features and matching methods
 
-## Installation
-Please refer to [Installation](docs/en/installation.md) for installation instructions.
-
 ## Getting Started
-Please refer to [quick start](docs/en/get_started.md) for the basic usage of XRLocalization.
+* [Installation](docs/en/installation.md)
+* [Quick Start](docs/en/get_started.md)
+* [Benchmark Evaluation](docs/en/benchmark/benchmark_evaluation.md)
+* [Customizing New Feature](docs/en/tutorials/customize_local_feature.md)
+* [Customizing Your Map](docs/en/tutorials/customize_map.md)
+* [Building AR Application](http://doc.openxrlab.org.cn/openxrlab_document/ARDemo/ARdemo.html)
 
 ## Benchmark
 Please refer to [benchmark](docs/en/benchmark/benchmark.md).
