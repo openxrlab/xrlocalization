@@ -46,6 +46,7 @@ def read_features_binary(path_to_image_features_bin):
     features = {}
     with open(path_to_image_features_bin, 'rb') as file:
         num_images = struct.unpack('<Q', file.read(8))[0]
+        feature_dim = struct.unpack('<I', file.read(4))[0]
         for i in range(num_images):
             id = struct.unpack('<I', file.read(4))[0]
             name = ''
@@ -60,10 +61,10 @@ def read_features_binary(path_to_image_features_bin):
             for j in range(num_keypoints):
                 point2ds[0, j] = struct.unpack('<d', file.read(8))[0]
                 point2ds[1, j] = struct.unpack('<d', file.read(8))[0]
-            descriptors = np.zeros((256, num_keypoints))
+            descriptors = np.zeros((feature_dim, num_keypoints))
             for j in range(num_keypoints):
                 descriptors[:, j] = np.array(
-                    struct.unpack('<256f', file.read(4 * 256)))
+                    struct.unpack('<{}f'.format(feature_dim), file.read(4 * feature_dim)))
 
             features[id] = ImageLocalFeature(id=id,
                                              name=name,
@@ -80,8 +81,13 @@ def write_features_binary(features, path_to_image_features_bin):
         features: ImageLocalFeature dict
         path_to_image_features_bin: Path to file
     """
+    feature_dim = 0
+    for image_id in features:
+        feature_dim = features[image_id].descriptors.shape[0]
+        if feature_dim != 0: break
     with open(path_to_image_features_bin, 'wb') as file:
         file.write(struct.pack('<Q', len(features)))
+        file.write(struct.pack('<I', feature_dim))
         for image_id in features:
             feature = features[image_id]
             file.write(struct.pack('<I', feature.id))
@@ -96,7 +102,7 @@ def write_features_binary(features, path_to_image_features_bin):
                 file.write(struct.pack('<d', feature.point2ds[0, j]))
                 file.write(struct.pack('<d', feature.point2ds[1, j]))
             for j in range(feature.descriptors.shape[1]):
-                file.write(struct.pack('<256f', *feature.descriptors[:, j]))
+                file.write(struct.pack('<{}f'.format(feature_dim), *feature.descriptors[:, j]))
 
 
 def read_matches_binary(path_matches_bin):
