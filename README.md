@@ -62,6 +62,16 @@ If you use this toolbox or benchmark in your research, please cite this project.
 ```
 If you use Geometry-Aided Matching in your research, please cite:
 ```bibtex
+@misc{https://doi.org/10.48550/arxiv.2211.08712,
+  url = {https://arxiv.org/abs/2211.08712},
+  author = {Yu, Hailin and Feng, Youji and Ye, Weicai and Jiang, Mingxuan and Bao, Hujun and Zhang, Guofeng},
+  title = {Improving Feature-based Visual Localization by Geometry-Aided Matching},
+  publisher = {arXiv},
+  year = {2022},
+}
+```
+and
+```bibtex
 @inproceedings{yu2020learning,
   title={Learning bipartite graph matching for robust visual localization},
   author={Yu, Hailin and Ye, Weicai and Feng, Youji and Bao, Hujun and Zhang, Guofeng},
