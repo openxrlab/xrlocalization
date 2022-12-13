@@ -29,13 +29,13 @@ https://user-images.githubusercontent.com/111835288/187731838-45ccbfaf-8a19-46a1
 * [Benchmark Evaluation](docs/en/benchmark/benchmark_evaluation.md)
 * [Customizing New Feature](docs/en/tutorials/customize_local_feature.md)
 * [Customizing Your Map](docs/en/tutorials/customize_map.md)
-* [Building AR Application](http://doc.openxrlab.org.cn/openxrlab_document/ARDemo/ARdemo.html)
+* [Building AR Application](http://139.196.36.90/openxrlab_document/ARDemo/ARdemo.html)
 
 ## Benchmark
 Please refer to [benchmark](docs/en/benchmark/benchmark.md).
 
 ## AR Demo
-Please refer to [here](http://doc.openxrlab.org.cn/openxrlab_document/ARDemo/ARdemo.html) for building your own AR application.
+Please refer to [here](http://139.196.36.90/openxrlab_document/ARDemo/ARdemo.html) for building your own AR application.
 [Here](https://user-images.githubusercontent.com/44204704/187864126-e9cd7a43-a773-487d-ad01-4cc2988f3b5a.mp4) 
 is an AR demo based on XRLocalization.
 
