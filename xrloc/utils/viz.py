@@ -6,13 +6,13 @@ def draw_keypoint(image, kps, color=(255, 0, 0)):
     """Draw keypoint on image
     Args:
         image: RGB, HWC
-        kps: 2*N
+        kps: N*2
         color: RGB
     """
     # markerType = None, markerSize = None, thickness = None, line_type = None
     img = copy.copy(image)
-    for i in range(kps.shape[1]):
-        img = cv.drawMarker(img, (kps[0, i], kps[1, i]),
+    for i in range(len(kps)):
+        img = cv.drawMarker(img, (kps[i, 0], kps[i, 1]),
                             color=color,
                             markerType=cv.MARKER_CROSS,
                             markerSize=10,

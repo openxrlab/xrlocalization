@@ -1,9 +1,11 @@
 {
+  "mode": "2D3D",
+
   "local_feature": "d2net",
   "global_feature": "netvlad",
 
   "matcher": "gam",
-  "coarse": "sr",
+  "coarse": "cluster",
 
   "retrieval_num": 20,
   "scene_size": 20,

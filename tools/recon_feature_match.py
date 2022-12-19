@@ -6,7 +6,7 @@ import cv2 as cv
 from tqdm import tqdm
 from xrloc.map.read_write_model import read_points3d_binary, read_images_binary
 
-from xrloc.match.nearest_neighbor import nearest_neighbor
+from xrloc.matchers.matcher import Matcher
 from recon_read_write_data import read_features_binary
 from recon_read_write_data import ImageFeatureMatch, write_matches_binary
 from recon_read_write_data import pairid_to_imagepair, imagepair_to_pairid
@@ -56,6 +56,26 @@ def generate_image_pair_depend_recon(images, point3ds, image_pairs_num=5):
     return pairs
 
 
+def feature_match(matcher, feat1, feat2):
+    '''2D-2D feature match
+    ''' 
+    query = {
+        'points': feat1.point2ds,
+        'descs': feat1.descriptors,
+        'scores': np.ones(len(feat1.point2ds)), #TODO
+        'shape': np.array([feat1.height, feat1.width])
+    }
+    train = {
+        'points': feat2.point2ds,
+        'descs': feat2.descriptors,
+        'scores': np.ones(len(feat2.point2ds)), #TODO
+        'shape': np.array([feat2.height, feat2.width])
+    }
+    
+    pred = matcher.match(query, train)
+    return pred['matches'], pred['scores']
+
+
 def filter_match_by_fundamental(keypoints1, keypoints2, matches, thres=12.):
     """Fundamental filter
     Args:
@@ -70,8 +90,8 @@ def filter_match_by_fundamental(keypoints1, keypoints2, matches, thres=12.):
         cv.DMatch(matches[0, i], matches[1, i], 1)
         for i in range(matches.shape[1])
     ]
-    points1 = np.float32([keypoints1[:, m.queryIdx] for m in cvmatch])
-    points2 = np.float32([keypoints2[:, m.trainIdx] for m in cvmatch])
+    points1 = np.float32([keypoints1[m.queryIdx] for m in cvmatch])
+    points2 = np.float32([keypoints2[m.trainIdx] for m in cvmatch])
     _, mask = cv.findFundamentalMat(points1, points2, cv.FM_RANSAC, thres,
                                     0.99)
     return mask[:, 0]
@@ -97,6 +117,8 @@ def main(recon_path,
     image_pairs = generate_image_pair_depend_recon(images, point3ds,
                                                    image_pairs_num)
 
+    matcher = Matcher('nn')
+
     raw_image_feature_matches = {}
     for image_id1, image_id2 in tqdm(image_pairs):
 
@@ -104,12 +126,9 @@ def main(recon_path,
                 image_id2 not in image_local_features:
             continue
 
-        descriptors1 = image_local_features[image_id1].descriptors
-        descriptors2 = image_local_features[image_id2].descriptors
-
-        matches, sims = nearest_neighbor(descriptors1,
-                                         descriptors2,
-                                         cross_check=True)
+        matches, sims = feature_match(matcher,
+                                      image_local_features[image_id1],
+                                      image_local_features[image_id2])
 
         if f_verify_thres > 0:
             mask = filter_match_by_fundamental(

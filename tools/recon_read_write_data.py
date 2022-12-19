@@ -57,10 +57,10 @@ def read_features_binary(path_to_image_features_bin):
             width = struct.unpack('<Q', file.read(8))[0]
             height = struct.unpack('<Q', file.read(8))[0]
             num_keypoints = struct.unpack('<Q', file.read(8))[0]
-            point2ds = np.zeros((2, num_keypoints))
+            point2ds = np.zeros((num_keypoints, 2))
             for j in range(num_keypoints):
-                point2ds[0, j] = struct.unpack('<d', file.read(8))[0]
-                point2ds[1, j] = struct.unpack('<d', file.read(8))[0]
+                point2ds[j, 0] = struct.unpack('<d', file.read(8))[0]
+                point2ds[j, 1] = struct.unpack('<d', file.read(8))[0]
             descriptors = np.zeros((feature_dim, num_keypoints))
             for j in range(num_keypoints):
                 descriptors[:, j] = np.array(
@@ -99,10 +99,10 @@ def write_features_binary(features, path_to_image_features_bin):
             file.write(struct.pack('<c', b'\0'))
             file.write(struct.pack('<Q', feature.width))
             file.write(struct.pack('<Q', feature.height))
-            file.write(struct.pack('<Q', feature.point2ds.shape[1]))
-            for j in range(feature.point2ds.shape[1]):
-                file.write(struct.pack('<d', feature.point2ds[0, j]))
-                file.write(struct.pack('<d', feature.point2ds[1, j]))
+            file.write(struct.pack('<Q', len(feature.point2ds)))
+            for j in range(len(feature.point2ds)):
+                file.write(struct.pack('<d', feature.point2ds[j, 0]))
+                file.write(struct.pack('<d', feature.point2ds[j, 1]))
             for j in range(feature.descriptors.shape[1]):
                 file.write(struct.pack('<{}f'.format(feature_dim),
                                        *feature.descriptors[:, j]))

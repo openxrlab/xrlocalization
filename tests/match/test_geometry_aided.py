@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import pytest
 
-from xrloc.match.geometry_aided import GeometryAidedMatcher
+from xrloc.matchers.geometry_aided import GeometryAidedMatcher
 
 
 def test_geometry_aided_matcher_init():

@@ -33,6 +33,22 @@ class Reconstruction(object):
         self.point3ds = read_points3d_binary(points3d_bin_path)
         self.features = read_point3d_feature_binary(features_bin_path)
 
+        self.name2id = dict(
+            zip([self.images[key].name for key in self.images.keys()], self.images.keys()))
+
+    def name_to_id(self, image_name):
+        """Get image id.
+
+        Args:
+            image_name (str): Image name
+
+        Returns:
+            int: image_id
+        """
+        if image_name not in self.name2id:
+            return -1
+        return self.name2id[image_name]
+
     def covisible_images(self, image_id, num_covisble_point=1):
         """Get co-visible images.
 
@@ -92,6 +108,7 @@ class Reconstruction(object):
         mp_point3d_ids = np.array(list(set_point3d_ids))
         return mp_point3d_ids
 
+
     def point3d_at(self, point3d_id):
         """Get 3D point coordinate.
 
@@ -121,11 +138,11 @@ class Reconstruction(object):
             point3d_ids (array[int]): The point 3D ids
 
         Returns:
-            np.array(float, 3*N): The coordinates
+            np.array(float, N*3): The coordinates
         """
         coordinates = np.array([
             self.point3ds[point3d_id].xyz for point3d_id in point3d_ids
-        ]).transpose()
+        ])
         return coordinates
 
     def point3d_features(self, point3d_ids):

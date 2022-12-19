@@ -3,10 +3,10 @@ import torch
 
 import numpy as np
 
-from xrloc.match.bmnet import BipartiteMatchingNet
+from xrloc.matchers.bmnet import BipartiteMatchingNet
 
 
-class GeometryAidedMatcher(object):
+class GAM(object):
     default_config = {'k': 3, 'ratio': 0.7, 'dis_thres': 0.9, 'geo_prior': 0}
 
     def __init__(self, config=default_config):
@@ -17,19 +17,18 @@ class GeometryAidedMatcher(object):
 
     def __call__(self, data: dict):
         required_keys = [
-            '2d_points', '2d_descriptors', '3d_points', '3d_descriptors',
-            'width', 'height'
+            'query_points', 'query_descs', 'query_shape', 'train_points', 'train_descs',
         ]
 
         for key in required_keys:
             if key not in data:
                 raise ValueError(key + ' not exist in input')
 
-        if data['3d_descriptors'].shape[1] < self.config['k']:
+        if data['train_descs'].shape[1] < self.config['k']:
             return np.zeros((2, 0), dtype=int), np.zeros(0, dtype=np.float32)
 
-        matches, sims = self.knn_ratio_match(data['2d_descriptors'],
-                                             data['3d_descriptors'],
+        matches, sims = self.knn_ratio_match(data['query_descs'],
+                                             data['train_descs'],
                                              self.config['k'],
                                              self.config['ratio'],
                                              self.config['dis_thres'])
@@ -38,31 +37,46 @@ class GeometryAidedMatcher(object):
         logging.info('Knn ratio match size: {0}'.format(matches.shape[1]))
 
         p2ds, p3ds, edges = self.generate_bipartite_graph(
-            data['2d_points'], data['3d_points'], matches)
+            data['query_points'], data['train_points'], matches)
+        
         if edges.shape[1] < 2 or p2ds.shape[1] < 2 or p3ds.shape[1] < 2:
             return np.zeros((2, 0), dtype=int), np.zeros(0, dtype=np.float32)
 
-        priors, mask = self.find_maximum_matching(p2ds, p3ds, edges,
-                                                  data['width'],
-                                                  data['height'])
+        priors, mask = self.find_maximum_matching(p2ds.transpose(1, 0), 
+                                                  p3ds.transpose(1, 0),
+                                                  edges,
+                                                  data['query_shape'][1],
+                                                  data['query_shape'][0])
         matches = matches[:, (mask == 1).__and__(
             priors > self.config['geo_prior'])]
         priors = priors[(mask == 1).__and__(priors > self.config['geo_prior'])]
-        return matches, priors
+        return {
+            'matches': matches,
+            'scores': priors
+        }
 
-    @staticmethod
-    def generate_bipartite_graph(point2ds, point3ds, matches):
-        point2d_ids, point3d_ids = list(set(matches[0])), list(set(matches[1]))
-        point2ds, point3ds = point2ds[:, point2d_ids], point3ds[:, point3d_ids]
+
+    def generate_bipartite_graph(self, point2ds, point3ds, matches):
+        matches = matches.cpu().numpy()
+        point2d_ids, point3d_ids = np.array(list(set(matches[0]))), np.array(list(set(matches[1])))
+
         point2d_ids_inv = dict(
             zip(point2d_ids, [i for i in range(len(point2d_ids))]))
         edge_1 = np.array(
             [point2d_ids_inv[point2d_id] for point2d_id in matches[0]])
+
         point3d_ids_inv = dict(
             zip(point3d_ids, [i for i in range(len(point3d_ids))]))
         edge_2 = np.array(
             [point3d_ids_inv[point3d_id] for point3d_id in matches[1]])
+
         edges = np.array([edge_1, edge_2])
+
+        edges = torch.from_numpy(edges).to(self.device)
+        point2d_ids = torch.from_numpy(point2d_ids).to(self.device)
+        point3d_ids = torch.from_numpy(point3d_ids).to(self.device)
+
+        point2ds, point3ds = point2ds[point2d_ids], point3ds[point3d_ids]
         return point2ds, point3ds, edges
 
     @torch.no_grad()
@@ -70,20 +84,18 @@ class GeometryAidedMatcher(object):
         data = {
             'W': width,
             'H': height,
-            'PA': torch.from_numpy(point2ds.copy()).to(torch.float32).cuda(),
-            'PB': torch.from_numpy(point3ds.copy()).to(torch.float32).cuda(),
-            'MA': torch.from_numpy(edges).to(torch.long).cuda()
+            'PA': point2ds,
+            'PB': point3ds,
+            'MA': edges
         }
         weights, masks = self.model(data)
         priors = torch.sigmoid(weights) + 1e-6
-        return priors.detach().cpu().numpy(), masks.detach().cpu().numpy()
+        return priors, masks
 
     @staticmethod
     def knn_ratio_match(descriptors1, descriptors2, k=4, ratio=0.9, thres=0.7):
         assert descriptors1.shape[0] == descriptors2.shape[0]
         assert 1 <= k < descriptors2.shape[1]
-        descriptors1 = torch.from_numpy(descriptors1).to(torch.float32).cuda()
-        descriptors2 = torch.from_numpy(descriptors2).to(torch.float32).cuda()
         scores = torch.einsum('dm,dn->mn', descriptors1, descriptors2)
         sims, inds1 = scores.topk(k, dim=1, largest=True)
         dists = torch.sqrt(2 * (1 - sims.clamp(-1, 1)))
@@ -104,4 +116,4 @@ class GeometryAidedMatcher(object):
         matches = torch.stack([inds0, inds1],
                               dim=1).to(torch.long).permute([1, 0])
         sims = sims.reshape(-1)
-        return matches[:, mask].cpu().numpy(), sims[mask].cpu().numpy()
+        return matches[:, mask], sims[mask]

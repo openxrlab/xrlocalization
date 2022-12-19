@@ -43,14 +43,18 @@ class Extractor:
 
     # @count_time
     @torch.no_grad()
-    def extract(self, image):
+    def extract(self, image, image_size=None):
         """Extract feature for given image
         Args:
             image (np.array): Required RGB & HWC & Scalar[0-255] image
+            image_size (int): Max resolution of image
         Returns:
             Dict: Depends on specific extractor
         """
-        image, factor = image_resize(image, self.config['image_size'])
+        shape = image.shape[0:2]
+        if image_size is None:
+            image_size = self.config['image_size']
+        image, factor = image_resize(image, image_size)
         if self.config['gray_image']:
             image = convert_gray_image(image)
             image = image[None]
@@ -64,10 +68,17 @@ class Extractor:
         data = self.extractor(image)
         data = {k: v[0].cpu().numpy() for k, v in data.items()}
         if 'keypoints' in data:
-            data['keypoints'] = data['keypoints'].transpose()
+            # data['keypoints'] = data['keypoints'].transpose()
             if factor != 1:
                 data['keypoints'] = self.back_to_origin_size(
                     data['keypoints'], factor)
+            ret_data = {}
+            ret_data['points'] = data['keypoints']
+            ret_data['descs'] = data['descriptors']
+            ret_data['scores'] = data['scores']
+            ret_data['shape'] = np.array(shape)
+            return ret_data
+            
         if 'global_descriptor' in data:
             data = data['global_descriptor']
         return data
