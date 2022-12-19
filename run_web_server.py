@@ -53,7 +53,9 @@ def loc():
               intrinsic['params'])
 
     global loc_server
-    output = loc_server.localize(image, camera)
+    
+    ref_image_ids = loc_server.geo_localize(image)
+    ret = loc_server.refine_localize(image, camera, ref_image_ids)
 
     # pose in Twc
     # qvec should be [qw, qx, qy, qz]

@@ -2,7 +2,7 @@ import os
 import numpy as np
 
 
-def read_ios_logger_query_dataset(path, relative=True):
+def read_ios_logger_query_dataset(path):
     """Read iOS logger query dataset
     Args:
         path (str): Path to query.txt
@@ -10,6 +10,7 @@ def read_ios_logger_query_dataset(path, relative=True):
     Returns:
         list[tuple]: Query data items with camera
     """
+    dir_name = os.path.dirname(path)
     results = []
     with open(path, 'r') as f:
         raw_data = f.readlines()
@@ -18,7 +19,6 @@ def read_ios_logger_query_dataset(path, relative=True):
         name, camera_model, width, height = data[:4]
         params = np.array(data[4:], float)
         camera = (camera_model, int(width), int(height), params)
-        if relative:
-            name = os.path.join(os.path.dirname(path), name)
-        results.append((name, camera))
+        path = os.path.join(dir_name, name)
+        results.append((path, name, camera))
     return results

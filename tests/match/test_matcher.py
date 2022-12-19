@@ -2,8 +2,8 @@ import numpy as np
 
 import pytest
 
-from xrloc.match.matcher import Matcher
-from xrloc.match.nearest_neighbor import NearestNeighborMatcher
+from xrloc.matchers.matcher import Matcher
+from xrloc.matchers.nearest_neighbor import NearestNeighborMatcher
 
 
 def test_init_nn():

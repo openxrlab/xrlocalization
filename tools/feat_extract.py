@@ -19,8 +19,8 @@ def main(name, image_path, verb=True, save_path=''):
     for image_path in image_paths:
         image = read_image(image_path)
         # while True:
-        res = feature.extract(image)
-        image = draw_keypoint(image, res['keypoints'])
+        feat = feature.extract(image)
+        image = draw_keypoint(image, feat['points'])
         if verb:
             show_image(name, image)
         if save_path != '':

@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import pytest
 
-from xrloc.match.bmnet import PointCN, hungarian_pooling, BipartiteMatchingNet
+from xrloc.matchers.bmnet import PointCN, hungarian_pooling, BipartiteMatchingNet
 
 
 def test_pointcn_init():

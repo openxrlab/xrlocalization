@@ -30,14 +30,14 @@ def main(image_dir, image_bin_path, feature_bin_path, extractor_name='d2net'):
         image_path = os.path.join(image_dir, image_name)
         image = read_image(image_path)
         width, height = image.shape[1], image.shape[0]
-        data = model.extract(image)
+        feat = model.extract(image)
 
         features[image_id] = ImageLocalFeature(id=image_id,
                                                name=image_name,
                                                width=width,
                                                height=height,
-                                               point2ds=data['keypoints'],
-                                               descriptors=data['descriptors'])
+                                               point2ds=feat['points'],
+                                               descriptors=feat['descs'])
 
     write_features_binary(features, feature_bin_path)
 

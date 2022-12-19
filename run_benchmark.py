@@ -20,16 +20,18 @@ def main(query_path, map_path, json_path=None):
         loc = Localizer(map_path)
 
     beg_time = time.time()
-    for i, (image_name, camera) in enumerate(dataset):
+    for i, (path, image_name, camera) in enumerate(dataset):
         logging.info(
             '======================[{0} / {1}]======================'.format(
                 i + 1, len(dataset)))
         logging.info('Image path: {0}'.format(image_name))
 
-        image = read_image(image_name)
+        image = read_image(path)
 
         # Perform Loc
-        ret = loc.localize(image, camera)
+        input = image if hasattr(loc, 'database') else image_name
+        ref_image_ids = loc.geo_localize(input)
+        ret = loc.refine_localize(image, camera, ref_image_ids)
 
         pose = [str(p) for p in (list(ret['qvec']) + list(ret['tvec']))]
         logging.info('Solved Pose:' + ' '.join(pose))
