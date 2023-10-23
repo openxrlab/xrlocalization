@@ -28,6 +28,7 @@ def main(database_path,
          save_path,
          image_dir='',
          retrieve_num=20,
+         keep_pairs=False,
          extractor_name='netvlad'):
     """Create image database depend on images.bin
     Args:
@@ -46,7 +47,6 @@ def main(database_path,
     model = Extractor(extractor_name)
     database.set_image_extractor(model)
 
-    query = database
     if image_dir != '':
         query = ImageDatabase()
         query.set_image_extractor(model)
@@ -56,6 +56,9 @@ def main(database_path,
             image = read_image(os.path.join(image_dir, image_name))
             query.add_image(image, i, image_name)
         query.create()
+    else:
+        query = database
+        retrieve_num += 1
 
     retrieve_num = retrieve_num if retrieve_num < database.size else\
         database.size
@@ -67,7 +70,8 @@ def main(database_path,
         pairs += [(query_name, database.names[j]) for j in indices[i]
                   if query_name != database.names[j]]
 
-    pairs = eliminate_duplicated_pairs(pairs)
+    if not keep_pairs:
+        pairs = eliminate_duplicated_pairs(pairs)
 
     print('Found {} image pairs'.format(len(pairs)))
     with open(save_path, 'w') as file:
@@ -80,6 +84,7 @@ if __name__ == '__main__':
     parser.add_argument('--save_path', type=str, required=True)
     parser.add_argument('--image_dir', type=str, required=False, default='')
     parser.add_argument('--retrieve_num', type=int, required=False, default=20)
+    parser.add_argument('--keep_pairs', action='store_true')
     parser.add_argument('--extractor',
                         type=str,
                         required=False,
@@ -88,4 +93,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     main(args.database_path, args.save_path, args.image_dir, args.retrieve_num,
-         args.extractor)
+         args.keep_pairs, args.extractor)
