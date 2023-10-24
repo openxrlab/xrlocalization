@@ -14,5 +14,6 @@ python3 tools/ir_create_database.py \
 python3 tools/ir_image_retrieve.py \
     --database_path /path/to/database.bin \
     --save_path /path/to/save/pair.txt \
-    --retrieve_num 20
+    --retrieve_num 20 \
+    --keep_pairs
 ```
