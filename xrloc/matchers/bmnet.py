@@ -3,7 +3,7 @@ import torch
 
 import torch.nn as nn
 
-from xrloc.utils.miscs import download_model, get_parent_dir
+from xrloc.utils.miscs import gdown_download_model, get_parent_dir
 from scipy.optimize import linear_sum_assignment
 
 
@@ -135,11 +135,11 @@ class BipartiteMatchingNet(nn.Module):
         # 'hpooling'] else None
         self.conv = nn.Conv1d(self.config['channels2'][-1], 1, kernel_size=1)
 
-        url = 'https://openxrlab-share-mainland.oss-cn-hangzhou.aliyuncs.com/xrlocalization/weights/bmnet.pth'
+        url = 'https://docs.google.com/uc?id=1RqkkGc5WomkP7aDgLbCXLqlc8jcwdlcN'
         model_dir = get_parent_dir(__file__) + '/../models/'
 
         model_name = 'bmnet.pth'
-        download_model(url, model_dir, model_name)
+        gdown_download_model(url, model_dir, model_name)
         model_path = os.path.join(model_dir, model_name)
 
         self.load_state_dict(

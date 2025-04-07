@@ -10,8 +10,8 @@ dataset_dir = 'tests/data'
 def fixture():
     if os.path.exists(dataset_dir):
         shutil.rmtree(dataset_dir)
-    url = 'https://openxrlab-share-mainland.oss-cn-hangzhou.aliyuncs.com/xrlocalization/meta/xrloc-test-meta.tar.gz'
-    command = ['wget', '--no-check-certificate', url]
+    url = 'https://docs.google.com/uc?id=1vKfCDWtZ1ui5t5sYjlF_EAqj1mVM1zk-'
+    command = ['gdown', url]
     subprocess.run(command, check=True)
     command = ['tar', '-xf', 'xrloc-test-meta.tar.gz']
     subprocess.run(command, check=True)

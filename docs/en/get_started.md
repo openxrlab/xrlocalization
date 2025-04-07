@@ -2,7 +2,7 @@
 XRLocalization provides a flexible tool that can easily perform visual localization offline and online.
 Given a query image, XRLocalization estimates a 6DoF pose from a pre-reconstructed map. A tiny dataset
 is provided for convenience. Download the dataset from
-[here](https://openxrlab-share-mainland.oss-cn-hangzhou.aliyuncs.com/xrlocalization/meta/xrloc-test-meta.tar.gz). The
+[here](https://drive.google.com/file/d/1vKfCDWtZ1ui5t5sYjlF_EAqj1mVM1zk-/view?usp=sharing). The
 folder extracted from the dataset is shown below.
 ```commandline
 ├── map

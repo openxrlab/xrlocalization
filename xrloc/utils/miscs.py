@@ -107,6 +107,16 @@ def download_model(url, model_dir, model_name):
     subprocess.run(command, check=True)
 
 
+def gdown_download_model(url, model_dir, model_name):
+    model_path = os.path.join(model_dir, model_name)
+    if os.path.exists(model_path):
+        return
+    os.makedirs(model_dir, exist_ok=True)
+    print('Downloading the {} model from {}.'.format(model_name, url))
+    command = ['gdown', url, '-O', model_path]
+    subprocess.run(command, check=True)
+
+
 def head_logging(info: str, width=50):
     logging.info('=' * width)
     left = '*' * int((width - len(info) - 2) / 2) + ' '
